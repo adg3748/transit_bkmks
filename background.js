@@ -1,3 +1,5 @@
+var bkmk_num = 0;
+
 chrome.runtime.onInstalled.addListener(function() {
   chrome.storage.sync.set({key: 0}, function() {
     console.log('Value is set to ' + '0');
@@ -17,11 +19,6 @@ chrome.runtime.onInstalled.addListener(function() {
 });
 
 chrome.browserAction.onClicked.addListener(function(tab) {
-  var order;
-  chrome.storage.sync.get(['key'], function(result) {
-    order = result.key;
-    console.log('Value currently is ' + order);
-  });
   chrome.bookmarks.getTree(function(roots){
     var bkmk_br = roots[0].children[0].children // Array
     bkmk_br.some(function(bkmk){
@@ -31,15 +28,17 @@ chrome.browserAction.onClicked.addListener(function(tab) {
       }
     });
     var len = folder.children.length;
-    var num = order % len;
+    var num = bkmk_num % len;
     var url = folder.children[num].url;
-    order += 1;
-    chrome.storage.sync.set({key: order}, function() {
-      console.log('=', 'Value is set to ' + order);
-    });
+    bkmk_num += 1;
     chrome.tabs.update({ 'url': url }, function(tab){});
   });
 });
+
+//  chrome.storage.sync.set({key: bkmk_num}, function() {
+//    console.log('=', 'Value is set to ' + bkmk_num);
+//  });
+
 
 //Array(1)
 //0:
