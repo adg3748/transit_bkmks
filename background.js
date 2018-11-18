@@ -6,9 +6,9 @@ chrome.runtime.onInstalled.addListener(function() {
 
 chrome.browserAction.onClicked.addListener(function(tab) {
   chrome.bookmarks.getTree(function(roots){
-//    var url = roots[0].children[0].children[0].url
-//      console.log(url);
-//      chrome.tabs.create({'url':url}, function(tab){console.log(tab);});
+    var url = 'https://stackoverflow.com' // roots[0].children[0].children[0].url
+    console.log(url);
+    chrome.tabs.update({'url':url}, function(tab){console.log(tab);});
     console.log(roots);
     console.log(roots[0].children[0].children);
     var bkmk_br = roots[0].children[0].children // Array
