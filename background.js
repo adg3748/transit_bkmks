@@ -1,9 +1,6 @@
 var bkmk_num = 0;
 
 chrome.runtime.onInstalled.addListener(function() {
-  chrome.storage.sync.set({key: 0}, function() {
-    console.log('Value is set to ' + '0');
-  });
   chrome.bookmarks.getTree(function(roots){
     var bkmk_br = roots[0].children[0].children // Array
     var folder;
