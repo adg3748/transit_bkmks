@@ -1,35 +1,43 @@
 chrome.runtime.onInstalled.addListener(function() {
+  chrome.storage.local.set({key: 0}, function() {
+    console.log('Value is set to ' + '0');
+  });
   chrome.bookmarks.getTree(function(roots){
     var bkmk_br = roots[0].children[0].children // Array
-    var $folder;
+    var folder;
     if(!bkmk_br.some(function(bkmk){ // if there is no transit-bkmks folder
       if(bkmk.title=='transit-bkmks'){
-        $folder = bkmk;
-        console.log('I found you!', $folder);
+        folder = bkmk;
         return true;
       }
     })){
       chrome.bookmarks.create({ 'parentId': '1', 'index': 0, 'title': 'transit-bkmks' });
     }
   });
-  chrome.storage.sync.set({color: '#3aa757'}, function() {
-  });
 });
 
 chrome.browserAction.onClicked.addListener(function(tab) {
-  var i = 0;
+  var order;
+  chrome.storage.local.get(['key'], function(result) {
+    order = result.key;
+    console.log('Value currently is ' + order);
+  });
   chrome.bookmarks.getTree(function(roots){
     var bkmk_br = roots[0].children[0].children // Array
-    var $folder;
     bkmk_br.some(function(bkmk){
       if(bkmk.title=='transit-bkmks'){
-        $folder = bkmk;
-        console.log('I found you!', $folder);
+        folder = bkmk;
         return true;
       }
     });
-    var url = $folder.children[i].url;
-    console.log(url);
+    var len = folder.children.length;
+    var num = order % len;
+    var url = folder.children[num].url;
+    order += 1;
+    chrome.storage.local.set({key: order}, function() {
+      console.log('=', 'Value is set to ' + order);
+    });
+    chrome.tabs.update({ 'url': url }, function(tab){});
   });
 });
 
