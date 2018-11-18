@@ -1,4 +1,4 @@
-var bkmk_num = 0;
+var bkmk_num = 0; // alive until browser is closed
 
 chrome.runtime.onInstalled.addListener(function() {
   chrome.bookmarks.getTree(function(roots){
