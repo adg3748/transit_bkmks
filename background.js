@@ -38,21 +38,3 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 //  chrome.storage.sync.set({key: bkmk_num}, function() {
 //    console.log('=', 'Value is set to ' + bkmk_num);
 //  });
-
-
-//Array(1)
-//0:
-//children: Array(2)
-//0:
-//children: Array(125)
-//[0 … 99]
-//0:
-//children: Array(0)
-//length: 0
-//__proto__: Array(0)
-//dateAdded: 1542548448670
-//dateGroupModified: 1542548448670
-//id: "1288"
-//index: 0
-//parentId: "1"
-//title: "transit-bkmks"
