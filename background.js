@@ -1,5 +1,5 @@
 chrome.runtime.onInstalled.addListener(function() {
-  chrome.storage.local.set({key: 0}, function() {
+  chrome.storage.sync.set({key: 0}, function() {
     console.log('Value is set to ' + '0');
   });
   chrome.bookmarks.getTree(function(roots){
@@ -18,7 +18,7 @@ chrome.runtime.onInstalled.addListener(function() {
 
 chrome.browserAction.onClicked.addListener(function(tab) {
   var order;
-  chrome.storage.local.get(['key'], function(result) {
+  chrome.storage.sync.get(['key'], function(result) {
     order = result.key;
     console.log('Value currently is ' + order);
   });
@@ -34,7 +34,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
     var num = order % len;
     var url = folder.children[num].url;
     order += 1;
-    chrome.storage.local.set({key: order}, function() {
+    chrome.storage.sync.set({key: order}, function() {
       console.log('=', 'Value is set to ' + order);
     });
     chrome.tabs.update({ 'url': url }, function(tab){});
