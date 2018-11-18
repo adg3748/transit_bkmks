@@ -28,5 +28,15 @@
     "background",
     "http://*/*",
     "https://*/*"
-  ]
+  ],
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "windows": "Ctrl+S",
+        "mac": "MacCtrl+S",
+        "chromeos": "Ctrl+S",
+        "linux": "Ctrl+S"
+      }
+    }
+  }
 }

@@ -1,5 +1,9 @@
 var bkmk_num = 0; // alive until browser is closed
 
+chrome.commands.onCommand.addListener(function(command) {
+  console.log('Command:', command);
+});
+
 chrome.runtime.onInstalled.addListener(function() {
   chrome.bookmarks.getTree(function(roots){
     var bkmk_br = roots[0].children[0].children // Array
