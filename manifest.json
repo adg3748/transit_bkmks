@@ -28,8 +28,7 @@
     "bookmarks",
     "tabs",
     "background",
-    "http://*/*",
-    "https://*/*"
+    "activeTab"
   ],
   "commands": {
     "_execute_browser_action": {
