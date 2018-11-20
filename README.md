@@ -2,6 +2,8 @@
 
 You can transit bookmarks by Ctrl+s
 
+![screen-shot-image](https://user-images.githubusercontent.com/26163436/48775200-5156d800-ed07-11e8-9f39-b36a11d93ff7.png)
+
 ------------------------------
 
 This extension will solve your problem that it is troublesome to open bookmarks via bookmark bar with mouse operation.
