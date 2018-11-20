@@ -1,7 +1,9 @@
 {
-  "name": "transit_bkmks",
+  "name": "__MSG_extName__",
+  "description": "__MSG_extDescription__",
   "version": "1.0",
   "manifest_version": 2,
+  "default_locale": "en",
   "background": {
     "scripts": ["background.js"],
     "persistent": false
