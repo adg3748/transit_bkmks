@@ -1,4 +1,8 @@
-var bkmk_num = 0; // alive until browser is closed
+if(localStorage.num){
+  var bkmk_num = Number(localStorage.num) + 1;
+} else {
+  var bkmk_num = 0;
+}
 
 chrome.commands.onCommand.addListener(function(command) {
   console.log('Command:', command);
@@ -31,9 +35,10 @@ chrome.browserAction.onClicked.addListener(function(tab) {
     var len = folder.children.length;
     var num = bkmk_num % len;
     var url = folder.children[num].url;
-    bkmk_num += 1;
+    bkmk_num = bkmk_num + 1;
     chrome.tabs.update({ 'url': url }, function(tab){});
   });
+  localStorage.num = bkmk_num;
 });
 
 //  chrome.storage.sync.set({key: bkmk_num}, function() {
